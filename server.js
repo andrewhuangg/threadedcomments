@@ -14,6 +14,7 @@ connectDB();
 // Route files
 const comments = require('./routes/comments');
 const posts = require('./routes/posts');
+const auth = require('./routes/auth');
 
 const app = express();
 
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 // Mount routers
 app.use('/api/v1/comments', comments);
 app.use('/api/v1/posts', posts);
+app.use('/api/v1/auth', auth);
 
 const PORT = process.env.PORT || 5000;
 

@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { createPost, getPost, getPosts, updatePost, deletePost } = require('../controllers/posts');
 
-router.route('/id').get(getPost).put(updatePost).delete(deletePost);
-router.route('/').post(createPost).get(getPosts);
+const { authenticate } = require('../middleware/authenticate');
+
+router.route('/id').get(getPost).put(authenticate, updatePost).delete(authenticate, deletePost);
+router.route('/').post(authenticate, createPost).get(getPosts);
 
 module.exports = router;
