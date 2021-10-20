@@ -13,8 +13,12 @@ connectDB();
 
 // Route files
 const comments = require('./routes/comments');
+const posts = require('./routes/posts');
 
 const app = express();
+
+// Body parser
+app.use(express.json());
 
 // Middleware
 // logger
@@ -22,6 +26,7 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 // Mount routers
 app.use('/api/v1/comments', comments);
+app.use('/api/v1/posts', posts);
 
 const PORT = process.env.PORT || 5000;
 
